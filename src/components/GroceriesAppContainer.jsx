@@ -1,3 +1,5 @@
+//SCCS - Project 1
+
 import products from "../data/products";
 import NavBar from "./NavBar";
 import ProductsContainer from "./ProductsContainer";

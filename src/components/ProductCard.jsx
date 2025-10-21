@@ -1,3 +1,5 @@
+//SCCS - Project 1
+
 import QuantityCounter from "./QuantityCounter";
 
 export default function ProductCard(props) 

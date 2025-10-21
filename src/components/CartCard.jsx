@@ -1,3 +1,5 @@
+//SCCS - Project 1
+
 export default function CartCard(props) {
     return <div>
         {console.log("MADE CART_CARD WITH ID OF: " + props.id)}

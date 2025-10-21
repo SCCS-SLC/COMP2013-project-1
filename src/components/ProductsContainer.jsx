@@ -1,3 +1,5 @@
+//SCCS - Project 1
+
 import ProductCard from "./ProductCard";
 
 export default function ProductsContainer(props) {

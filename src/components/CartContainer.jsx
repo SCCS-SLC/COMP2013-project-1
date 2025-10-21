@@ -1,3 +1,5 @@
+//SCCS - Project 1
+
 import CartCard from "./CartCard.jsx";
 
 
@@ -8,7 +10,7 @@ export default function CartContainer(props) {
 
         {props.cartData.forEach(i => {
             if(i.quantity > 0){
-                
+                //should one card but doesn't
                 <CartCard id={i.id}/>
 
                 {console.log("VALID PRODUCT")}

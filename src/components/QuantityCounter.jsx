@@ -1,3 +1,5 @@
+//SCCS - Project 1
+
 import { UpdateProductAdding } from "./GroceriesAppContainer";
 
 let quantityToAdd = 0;

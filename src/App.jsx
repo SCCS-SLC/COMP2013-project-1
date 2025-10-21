@@ -1,3 +1,5 @@
+//SCCS - Project 1
+
 import "./App.css";
 import GroceriesAppContainer from "./components/GroceriesAppContainer.jsx";
 

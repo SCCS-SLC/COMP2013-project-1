@@ -1,3 +1,5 @@
+//SCCS - Project 1
+
 export default function NavBar(props) {
     return <div className="NavBar">
         <p>Hello, {props.username}</p>
