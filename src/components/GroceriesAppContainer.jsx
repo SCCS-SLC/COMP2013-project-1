@@ -20,8 +20,6 @@ export function UpdateProductAdding(addingVal) {
 }
 
 export default function GroceriesAppContainer() {
-    
-
     //use state for refreshing stuff
     const [productQuantity, setProdQuantity] = useState(
         products.map((product) => {
@@ -32,6 +30,7 @@ export default function GroceriesAppContainer() {
         })
     )
 
+    //cart data stuff
     const [cartData, setCartData] = useState(
         products.map((product) => {
             return {
@@ -65,33 +64,90 @@ export default function GroceriesAppContainer() {
             return product;
         });
 
+        //console.log(newQuantity);
         //remake the array with the altered amounts
         setProdQuantity(newQuantity);
         return null;
     }
 
-    const addToCart = (prodQuan, prodID) => {
-        console.log("QUAN: " + prodQuan.quantity + " | ID: " + prodID);
-
-        //make sure it will be adding something
-        if(prodQuan.quantity > 0){
-        const newCart = cartData.map((cart) => {
-            //finding the one to add
-            if(cart.id === prodID){
-                return{
-                    ...cart, quantity: prodQuan.quantity
+    const removeFromCart = (prodID) => {
+        const newQuantity = productQuantity.map((product) => {
+            //if its found...
+            if(product.id === prodID){
+                return {
+                    ...product, quantity: product.quantity = 0,
+                    //...console.log("ADDING: " + amountAdded)
                 }
+                
             }
-            //unchanged
-            return cart;
-        })
+            //return the unchanged version(s)
+            return product;
+        });
 
-        setCartData(newCart);
-
-        console.log(newCart);
+        //console.log(newQuantity);
+        //remake the array with the altered amounts
+        setProdQuantity(newQuantity);
         return null;
-
     }
+
+    const clearCart = () => {
+        //remake the data with 0 quantity
+        const newCart = productQuantity.map((valProd) => {
+            return {
+                ...valProd, quantity: 0
+            }            
+        })
+        //show 0 products
+        productCount = 0;
+        //reset cart data with the blank array
+        setCartData(newCart);
+        return null; 
+    }
+
+    const addToCart = (prodQuan, prodID) => {
+        //console.log("QUAN: " + prodQuan.quantity + " | ID: " + prodID);       
+            productCount = prodQuan.quantity;
+                //comparing with the current quantities
+                const newCart = productQuantity.map((valProd) => {
+                    if(valProd.quantity > 0 || valProd.id === prodID ){
+                        //get the stuff with quantities
+                        const validCartData = products.map((product) => {
+                            //if its the same as where I want to look at...
+                            if(valProd.id === product.id){
+                                //and its going to have a new quantity...
+                                if(product.id === prodID){
+                                    //make a new product, and define its quantity
+                                    return {...product, quantity: prodQuan.quantity}
+                                }
+                                else{
+                                    productCount += valProd.quantity
+                                    //otherwise, use the qunatites previously set up
+                                    return {...product, quantity:valProd.quantity}
+                                }
+                                
+                            }
+                        //and remove all of the undefined stuff 
+                        //(the specific element I am searching for will always be in 0
+                        //so I use [0] so it makes it a single thing, and not an array)
+                        }).filter((valid) => valid != undefined)[0]
+                        return{
+                            ...validCartData
+                        }
+                    }
+                    
+                })
+
+                //console.log(newCart);
+                
+                const filterCart = newCart.filter((correctCart) => {
+                    //console.log("CORRECT CART: " + correctCart);
+                    return correctCart != undefined
+                });
+
+                //console.log({filterCart});
+
+                setCartData(filterCart);
+                return null;    
         
     }
 
@@ -99,7 +155,7 @@ export default function GroceriesAppContainer() {
         <NavBar className="NavDiv" appName="Groceries App" username="SCCS" productCount={productCount}/>
         <div className="GroceriesApp-Container">
             <ProductsContainer data={products} prodQuantity={productQuantity} addQuantity={addToQuan} addCart={addToCart}/>
-            <CartContainer productCount={productCount} cartData={cartData} data={products}/>   
+            <CartContainer productCount={productCount} cartData={cartData} data={products} addQuantity={addToQuan} prodQuantity={productQuantity} addCart={addToCart} removeCart={removeFromCart} clearCart={clearCart}/>   
         </div>
     </div>
 }

@@ -4,6 +4,7 @@ import QuantityCounter from "./QuantityCounter";
 
 export default function ProductCard(props) 
 {
+    //console.log(props.prodQuantity)
     // console.log("ID: " + props.id);
     // console.log("NAME: " + props.productName);
     // console.log("BRAND: " + props.brand);

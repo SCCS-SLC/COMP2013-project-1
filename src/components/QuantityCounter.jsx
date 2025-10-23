@@ -9,7 +9,13 @@ export function NewQuantity() {
     UpdateProductAdding(quantityToAdd);
 }
 
+
 export default function QuantityCounter(props) {
+
+    //console.log(props.prodQuantity)
+
+    //updateItemTotal <- updating total value in cartCard
+
     //console.log(props.prodQuantity.quantity);
     const prodQuantity = props.addQuantity;
 
@@ -19,7 +25,7 @@ export default function QuantityCounter(props) {
             NewQuantity();
 
             prodQuantity(props.prodID);
-            console.log("TO ADD: " + quantityToAdd);
+            //console.log("TO ADD: " + quantityToAdd);
 
         }}>-</button>
         <p>{props.prodQuantity.quantity}</p>
@@ -28,7 +34,10 @@ export default function QuantityCounter(props) {
             NewQuantity();
 
             prodQuantity(props.prodID);
-            console.log("TO ADD: " + quantityToAdd);
+            //console.log("TO ADD: " + quantityToAdd);
         }}>+</button>
     </div>
+    
+
+    
 }
